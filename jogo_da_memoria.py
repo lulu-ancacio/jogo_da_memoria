@@ -11,7 +11,7 @@ numero_cartas.insert(0, 'A')
 numero_cartas += ['J', 'Q', 'K']
 naipe_cartas = ['♥️', '♦️', '♣️', '♠️']
 
-# Cabçalho.
+# Cabeçalho.
 def boas_vindas():
     print('♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠')
     print('♦Bem vindo(a) ao Jogo da Memória em Python!♥')
