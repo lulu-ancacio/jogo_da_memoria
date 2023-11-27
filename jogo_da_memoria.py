@@ -1,5 +1,5 @@
 # Importações
-import random, numpy as np
+import random, numpy as np, time
 
 # Carrega todas listas e matrizes usadas.
 grade_frente = np.empty((4, 8), dtype='U3')
@@ -55,33 +55,28 @@ def jogo_solo():
         nl1 = int(input("Insira qual linha você quer."))
         nc1 = int(input("Insira qual coluna você quer."))
         carta1 = grade_frente[nl1-1][nc1-1]
-        if carta1 != ' ':
-            grade_verso[nl1-1][nc1-1] = carta1
-            print(grade_verso)
-            nl2 = int(input("Insira qual linha você quer."))
-            nc2 = int(input("Insira qual coluna você quer."))
-            carta2 = grade_frente[nl2-1][nc2-1]
-            if carta2 != ' ':
-                grade_verso[nl2-1][nc2-1] = carta2
-                print(grade_verso)
-                if carta1 == carta2:
-                    print('Acertou!')
-                    grade_frente[nl1-1][nc1-1] = ' '
-                    grade_verso[nl1-1][nc1-1] = ' '
-                    grade_frente[nl2-1][nc2-1] = ' '
-                    grade_verso[nl2-1][nc2-1] = ' '
-                else:
-                    print('Errou!')
-                    grade_verso[nl1-1][nc1-1] = '☐'
-                    grade_verso[nl2-1][nc2-1] = '☐'
-            else:
-                print('Este espaço é inválido. Tente outro.')
+        grade_verso[nl1-1][nc1-1] = carta1
+        print(grade_verso)
+        nl2 = int(input("Insira qual linha você quer."))
+        nc2 = int(input("Insira qual coluna você quer."))
+        carta2 = grade_frente[nl2-1][nc2-1]
+        grade_verso[nl2-1][nc2-1] = carta2
+        print(grade_verso)
+        if carta1 == carta2:
+            print('Acertou!')
+            grade_frente[nl1-1][nc1-1] = ' '
+            grade_verso[nl1-1][nc1-1] = ' '
+            grade_frente[nl2-1][nc2-1] = ' '
+            grade_verso[nl2-1][nc2-1] = ' '
         else:
-            print('Este espaço é inválido. Tente outro.')
+            print('Errou!')
+            grade_verso[nl1-1][nc1-1] = '☐'
+            grade_verso[nl2-1][nc2-1] = '☐'
         for i in range(4):
             for j in range(8):
                 if grade_verso[i][j] == ' ':
                     n += 1
+
         if n == 32:
             print('Fim de jogo.')
             break
@@ -106,37 +101,32 @@ def jogo_1x1():
         nl1 = int(input("Insira qual linha você quer."))
         nc1 = int(input("Insira qual coluna você quer."))
         carta1 = grade_frente[nl1-1][nc1-1]
-        if carta1 != ' ':
-            grade_verso[nl1-1][nc1-1] = carta1
-            print(grade_verso)
-            nl2 = int(input("Insira qual linha você quer."))
-            nc2 = int(input("Insira qual coluna você quer."))
-            carta2 = grade_frente[nl2-1][nc2-1]
-            if carta2 != ' ':
-                grade_verso[nl2-1][nc2-1] = carta2
-                print(grade_verso)
-                if carta1 == carta2:
-                    print('Acertou! Jogue novamente.')
-                    if vez:
-                        pontos1 += 1
-                    else:
-                        pontos2 += 1
-                    grade_frente[nl1-1][nc1-1] = ' '
-                    grade_verso[nl1-1][nc1-1] = ' '
-                    grade_frente[nl2-1][nc2-1] = ' '
-                    grade_verso[nl2-1][nc2-1] = ' '
-                else:
-                    print('Errou!')
-                    if vez:
-                        vez = False
-                    else:
-                        vez = True
-                    grade_verso[nl1-1][nc1-1] = '☐'
-                    grade_verso[nl2-1][nc2-1] = '☐'
+        grade_verso[nl1-1][nc1-1] = carta1
+        print(grade_verso)
+        nl2 = int(input("Insira qual linha você quer."))
+        nc2 = int(input("Insira qual coluna você quer."))
+        carta2 = grade_frente[nl2-1][nc2-1]
+        grade_verso[nl2-1][nc2-1] = carta2
+        print(grade_verso)
+        if carta1 == carta2:
+            print('Acertou! Jogue novamente.')
+            if vez:
+                pontos1 += 1
             else:
-                print('Este espaço é inválido. Tente outro.')
+                pontos2 += 1
+            grade_frente[nl1-1][nc1-1] = ' '
+            grade_verso[nl1-1][nc1-1] = ' '
+            grade_frente[nl2-1][nc2-1] = ' '
+            grade_verso[nl2-1][nc2-1] = ' '
         else:
-            print('Este espaço é inválido. Tente outro.')
+            print('Errou!')
+            if vez:
+                vez = False
+            else:
+                vez = True
+            grade_verso[nl1-1][nc1-1] = '☐'
+            grade_verso[nl2-1][nc2-1] = '☐'
+
         for i in range(4):
             for j in range(8):
                 if grade_verso[i][j] == ' ':
@@ -148,6 +138,7 @@ def jogo_1x1():
                 print('♥♦♣♠ Jogador, ',player2, ' venceu, com ', pontos2, ' pontos! ♠♣♦♥')
             break
 
+  
 # Começando o jogo.
 criar_cartas()
 organizar_cartas()
